@@ -31,6 +31,8 @@
 - `db.<collection>.insertOne({<document>})` insert one document
 - `db.<collection>.insertMany([{<document>}, {<document>}, ...])` insert many documents
 
+- `db.help()` show all db commands
+
 ## environment
 
 ## author
