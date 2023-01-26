@@ -174,4 +174,25 @@ db.<collection>.find({<key>: {$elemMatch: {<key>: <value>}}})
 db.listingsAndReviews.find({amenities: {$elemMatch: {name: "Wifi"}}}).pretty()
 ```
 
+## Query arrays with $elemMatch
+
+```bson
+db.<collection>.find({<key>: {$elemMatch: {<key>: <value>, <key>: <value>}}})
+```
+
+```bson
+db.listingsAndReviews.find({amenities: {$elemMatch: {name: "Wifi", description: "Free Wifi"}}}).pretty()
+```
+
+- Query a subdocument with a field that contains an array of subdocuments
+
+```bson
+db.transactions.find({
+    transactions: {
+      $elemMatch: { amount: { $lte: 4500 }, transaction_code: "sell" },
+    },
+  })
+```
+
+Dont return scalar values, only documents that have an array value
 ## author
