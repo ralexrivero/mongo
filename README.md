@@ -195,4 +195,14 @@ db.transactions.find({
 ```
 
 Dont return scalar values, only documents that have an array value
+
+## logical operators
+
+- `$and` logical AND
+- `$or` logical OR
+- `$not` logical NOT
+- `$nor` logical NOR
+
+```bson
+
 ## author
