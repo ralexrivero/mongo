@@ -348,6 +348,20 @@ accepts the following parameters:
 
 ```javascript
 
+### deleteOne()
+
+Deletes a single document within the collection based on the filter.
+
+```javascript
+db.collection.deleteOne(<filter>)
+```
+
+### deleteMany()
+
+```javascript
+db.collection.deleteMany(<filter>)
+```
+
 ## docs
 
 - [MongoDB Manual](https://www.mongodb.com/docs/manual/)
