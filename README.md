@@ -320,6 +320,21 @@ MongoDB provides update operators and options to update documents: `$set`, `upse
 - `$set` operator add or replaces the value of a field with the specified value.
 - `upsert` option creates a new document if no document matches the query. The default value is false, then use `upsert: true` to enable it.
 - `$push` operator appends a specified value to an array, or adds the array field with the value if absent.
+- `$inc` operator increments a field by a specified value.
+
+### findAndModify()
+
+Finds a single document and updates it, returning the original or the updated document.
+
+```javascript
+db.collection.findAndModify(
+   {
+     query: <document>,
+     update: <document>,
+     new: <boolean>,
+   }
+)
+```
 
 ## docs
 

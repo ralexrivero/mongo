@@ -3,3 +3,5 @@ db.articles.updateOne(
   { $set: { topics: ["JavaScript", "Databases", "MongoDB"] } },
   { upsert: true }
 )
+
+'small mammals', 'rabbits', 'shrews'
