@@ -315,7 +315,11 @@ db.collection.updateOne(
 )
 ```
 
-MongoDB provides update operators and options to update documents: $set, upsert, and $push.
+MongoDB provides update operators and options to update documents: `$set`, `upsert`, and `$push`.
+
+- `$set` operator add or replaces the value of a field with the specified value.
+- `upsert` option creates a new document if no document matches the query. The default value is false, then use `upsert: true` to enable it.
+- `$push` operator appends a specified value to an array, or adds the array field with the value if absent.
 
 ## docs
 
