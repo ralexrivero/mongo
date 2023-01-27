@@ -336,6 +336,18 @@ db.collection.findAndModify(
 )
 ```
 
+### updateMany()
+
+Updates all documents that match the filter.
+
+accepts the following parameters:
+
+- filter: A query that matches the documents to update.
+- update: The update operations to apply to the documents.
+- options: An object that specifies options for the update. Not requiered.
+
+```javascript
+
 ## docs
 
 - [MongoDB Manual](https://www.mongodb.com/docs/manual/)
