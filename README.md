@@ -362,6 +362,30 @@ db.collection.deleteOne(<filter>)
 db.collection.deleteMany(<filter>)
 ```
 
+### Modify Query Results
+
+In MongoDB a cursor is a pointer to the result set of a query. Used to iterate through the documents returned from a query.
+
+- `limit()` method limits the number of documents returned by the query.
+- `skip()` method skips the specified number of documents in the query result.
+- `sort()` method sorts the documents returned by the query.
+
+- `cursor.sort()` method sorts the documents returned by the query. Within the parentheses, specify the field to sort by and the direction of the sort. Use 1 for ascending and -1 for descending.
+
+```javascript
+db.collection.find(<query>).sort({<field1>: <sort order>, <field2>: <sort order>})
+```
+
+- `cursor.limit()` returns query results in a specific order. Within the parentheses, specify the maximum number of documents to return.
+
+```javascript
+db.collection.find(<query>).limit(<number>)
+```
+
+### Projections
+
+Projections are used to limit the amount of data that MongoDB sends to applications. Projections can include or exclude fields from the documents returned.
+
 ## docs
 
 - [MongoDB Manual](https://www.mongodb.com/docs/manual/)
