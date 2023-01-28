@@ -362,7 +362,7 @@ db.collection.deleteOne(<filter>)
 db.collection.deleteMany(<filter>)
 ```
 
-### Modify Query Results
+## Modify Query Results
 
 In MongoDB a cursor is a pointer to the result set of a query. Used to iterate through the documents returned from a query.
 
@@ -385,6 +385,12 @@ db.collection.find(<query>).limit(<number>)
 ### Projections
 
 Projections are used to limit the amount of data that MongoDB sends to applications. Projections can include or exclude fields from the documents returned.
+
+- include field: `db.collection.find(<query>, {<field1>: 1, <field2>: 1})`
+- exclude: `db.collection.find(<query>, {<field1>: 0, <field2>: 0})`
+- exclude with _id: `db.collection.find(<query>, {_id: 0, <field1>: 1, <field2>: 1})`
+
+> inclusion and exclusion can't be combined in the same query, exception with _id field.
 
 ## docs
 
