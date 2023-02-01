@@ -392,6 +392,10 @@ Projections are used to limit the amount of data that MongoDB sends to applicati
 
 > inclusion and exclusion can't be combined in the same query, exception with _id field.
 
+### Count documents
+
+- `db.collections.countDocuments(<query>, <options>)` returns the number of documents that match the query.
+
 ## docs
 
 - [MongoDB Manual](https://www.mongodb.com/docs/manual/)
