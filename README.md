@@ -396,6 +396,10 @@ Projections are used to limit the amount of data that MongoDB sends to applicati
 
 - `db.collections.countDocuments(<query>, <options>)` returns the number of documents that match the query.
 
+```javascript
+db.collection.countDocuments({<field1>: <value1>, <field2>: <value2>})
+```
+
 ## docs
 
 - [MongoDB Manual](https://www.mongodb.com/docs/manual/)
