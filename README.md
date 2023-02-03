@@ -53,7 +53,6 @@ use(database);
 db.createCollection(collection);
 ```
 
-
 - `show dbs` show all databases
 - `use <db>` use database
 - `show collections` show all collections
@@ -63,8 +62,6 @@ db.createCollection(collection);
 - `db.<collection>.insertMany([{<document>}, {<document>}, ...])` insert many documents
 
 - `db.help()` show all db commands
-
-
 
 ## base concepts
 
@@ -398,6 +395,128 @@ Projections are used to limit the amount of data that MongoDB sends to applicati
 
 ```javascript
 db.collection.countDocuments({<field1>: <value1>, <field2>: <value2>})
+```
+
+### Aggregation
+
+Aggregation is an analysis and summary of data. Aggregation operations group values from multiple documents together, and can perform a variety of operations on the grouped data to return a single result.
+
+Stage is a single aggretation operation that processes data.
+
+Aggregation pipeline is a series of stages completed one a time, in order.
+
+```javascript
+db.collection.aggregate([
+    {
+        $stage1: {
+            { expression1 },
+            { expression2 }...
+        },
+        $stage2: {
+            { expression1 }...
+        }
+    }
+])
+```
+
+### $match and $group Stages
+
+```javascript
+db.zips.aggregate([
+  {
+    $match: {
+      state: "NY"
+    }
+  },
+  {
+    $group: {
+      _id: "$city",
+      totalPop: {
+        $sum: "$pop"
+      }
+    }
+  }
+])
+```
+
+### $sort and $limit stages
+
+```javascript
+db.zips.aggregate([
+{
+  $sort: {
+    pop: -1
+  },
+  $limit: {
+     5
+  }
+}
+```
+
+### $project, $set and $count
+
+$project stage is used to include or exclude fields from the documents returned.
+
+```javascript
+db.collection.aggregat([
+  {
+    $project: {
+      _id: 0,
+      city: 1,
+      state: 1,
+      pop: 1
+    }
+  }
+])
+```
+
+$set stage is used to add new fields to the documents.
+
+```javascript
+db.collection.aggregate([
+  {
+    $set: {
+      class: "A"
+    }
+```
+
+$count stage is used to count the number of documents in the aggregation pipeline.
+
+```javascript
+db.collection.aggregate([
+  {
+    $count: "total"
+  }
+])
+```
+
+### $out
+
+$out stage is used to write the aggregation pipeline results to a collection. Must be the last stage in the pipeline. If the collection already exists, it will be overwritten.
+
+- creates a new db if the db doesn't exist
+
+```javascript
+$out: {
+  db: "<db>",
+  coll: "<collection>"
+}
+```
+
+- use the same db
+
+```javascript
+{
+  $out: "newCollection"
+}
+```
+
+```javascript
+db.collection.aggregate([
+  {
+    $out: "newCollection"
+  }
+])
 ```
 
 ## docs
