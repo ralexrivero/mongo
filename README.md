@@ -447,6 +447,8 @@ db.zips.aggregate([
   $sort: {
     totalPop: -1
   }
+},
+  {
   $limit: 5
 }
 ])
