@@ -458,7 +458,7 @@ db.zips.aggregate([
 $project stage is used to include or exclude fields from the documents returned.
 
 ```javascript
-db.collection.aggregat([
+db.collection.aggregate([
   {
     $project: {
       _id: 0,
