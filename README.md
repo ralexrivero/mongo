@@ -445,17 +445,16 @@ db.zips.aggregate([
 db.zips.aggregate([
 {
   $sort: {
-    pop: -1
-  },
-  $limit: {
-     5
+    totalPop: -1
   }
+  $limit: 5
 }
+])
 ```
 
 ### $project, $set and $count
 
-$project stage is used to include or exclude fields from the documents returned.
+`$project` stage is used to include or exclude fields from the documents returned.
 
 ```javascript
 db.collection.aggregate([
@@ -470,7 +469,7 @@ db.collection.aggregate([
 ])
 ```
 
-$set stage is used to add new fields to the documents.
+`$set` stage is used to add new fields to the documents.
 
 ```javascript
 db.collection.aggregate([
@@ -478,9 +477,11 @@ db.collection.aggregate([
     $set: {
       class: "A"
     }
+  }
+])
 ```
 
-$count stage is used to count the number of documents in the aggregation pipeline.
+`$count` stage is used to count the number of documents in the aggregation pipeline.
 
 ```javascript
 db.collection.aggregate([
@@ -492,7 +493,7 @@ db.collection.aggregate([
 
 ### $out
 
-$out stage is used to write the aggregation pipeline results to a collection. Must be the last stage in the pipeline. If the collection already exists, it will be overwritten.
+`$out` stage is used to write the aggregation pipeline results to a collection. Must be the last stage in the pipeline. If the collection already exists, it will be overwritten.
 
 - creates a new db if the db doesn't exist
 
