@@ -1,4 +1,4 @@
-use blog;
+  use blog;
 db.articles.insertMany([
   {
   _id: ObjectId("63d55f7d3347e31ea84f0d26"),
