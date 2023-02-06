@@ -528,6 +528,9 @@ db.collection.aggregate([
 
 Indexes are data structures that store a small portion of the collection’s data set in an easy to traverse form. The index stores the value of a specific field or set of fields, ordered by the value of the field. The ordering of the index entries supports efficient equality matches and range-based query operations.
 
+- Single-field (one field)
+- Compound (2 to 32 fields)
+
 - `db.collection.createIndex(<key and index type specification>, <options>)`
 
 ```javascript
