@@ -572,6 +572,15 @@ Use `explain()` in a collection when running a query to see the Execution plan. 
 - The **FETCH** stage indicates documents are being read from the collection.
 - The **SORT** stage indicates documents are being sorted in memory.
 
+**Compound indexes** are used when need to sort by multiple fields. For example, if you need to sort by the city and state fields, you can create a compound index on the city and state fields.
+
+```javascript
+db.customers.createIndex({
+  city: 1,
+  state: 1
+})
+```
+
 ## docs
 
 - [MongoDB Manual](https://www.mongodb.com/docs/manual/)
