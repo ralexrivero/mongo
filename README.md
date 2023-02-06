@@ -581,6 +581,38 @@ db.customers.createIndex({
 })
 ```
 
+#### Order of Fields in a Compound Index
+
+The order of the fields matters when creating the index and the sort order. It is recommended to list the fields in the following order: *Equality*, *Sort*, and *Range*.
+
+- ***Equality***: field/s that matches on a single field value in a query
+- ***Sort***: field/s that orders the results by in a query
+- ***Range***: field/s that the query filter in a range of valid values
+
+#### Delete indexes
+
+Before deleting an index is a good practice for production to hide the index. To hide the index use `db.collection.hideIndex("<index name>")`. To delete the index use `db.collection.dropIndex("<index name>")`.
+
+Specified by name
+
+```javascript
+db.customers.hideIndex("email_1")
+db.customers.dropIndex("email_1")
+```
+
+Specified by key
+
+```javascript
+db.customers.hideIndex({email: 1})
+db.customers.dropIndex({email: 1})
+```
+
+Delete all the indexes
+
+```javascript
+db.customers.dropIndexes()
+```
+
 ## docs
 
 - [MongoDB Manual](https://www.mongodb.com/docs/manual/)
