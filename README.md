@@ -20,6 +20,8 @@ MongoDB is a cross-platform document-oriented database program. Classified as a 
 
 ## environment
 
+[![MongoDB](https://img.shields.io/static/v1?label=&message=MongoDB&color=47A248&logo=MongoDB&logoColor=47A248&labelColor=2F333A)](https://www.mongodb.com/)<!-- MongoDB -->
+
 - `docker`
 - `mongosh`
 - `Atlas`
@@ -521,6 +523,54 @@ db.collection.aggregate([
   }
 ])
 ```
+
+### indexes
+
+Indexes are data structures that store a small portion of the collection’s data set in an easy to traverse form. The index stores the value of a specific field or set of fields, ordered by the value of the field. The ordering of the index entries supports efficient equality matches and range-based query operations.
+
+- `db.collection.createIndex(<key and index type specification>, <options>)`
+
+```javascript
+db.collection.createIndex({<field1>: <type1>, <field2>: <type2>}, {<option1>: <value1>, <option2>: <value2>})
+```
+
+**Single field index**: A single field index is an index on a single field of a document. MongoDB creates a single field index on the _id field by default, but additional indexes may be needed for other fields as well. A single field index can also be a multikey index if it operates on an array field.
+
+**Compound index**: MongoDB supports compound indexes, where a single index structure holds references to multiple fields within a collection's documents. A compound index is created by specifying the fields that the index should reference, followed by the order in which the fields should be sorted. The order of the fields in the index is important because it determines the order in which the documents are returned when querying the collection. A compound index can also be a multikey index if one of the fields is an array.
+
+**Multikey index**: A multikey index is an index on an array field. Each element in the array gets an index key, which supports efficient querying against array fields. Both single field and compound indexes can have an array field, so there are both multikey single field indexes and multikey compound indexes.
+
+**Unique index**: A unique index enforces a unique constraint on the indexed field so that all indexed field values must be unique. If you try to insert a document that contains a value that already exists in the index, the insert operation fails.
+
+Use `createIndex()` to create a new index in a collection. Within the parentheses of createIndex(), include an object that contains the field and sort order.
+
+```javascript
+db.customers.createIndex({
+  birthdate: 1
+})
+```
+
+```javascript
+db.customers.createIndex({
+  email: 1
+},
+{
+  unique:true
+})
+```
+
+Use `getIndexes()` to see all the indexes created in a collection.
+
+```javascript
+db.customers.getIndexes()
+```
+
+Use `explain()` in a collection when running a query to see the Execution plan. This plan provides the details of the execution stages (IXSCAN , COLLSCAN, FETCH, SORT, etc.).
+
+- The **IXSCAN** stage indicates the query is using an index and what index is being selected.
+- The **COLLSCAN** stage indicates a collection scan is perform, not using any indexes.
+- The **FETCH** stage indicates documents are being read from the collection.
+- The **SORT** stage indicates documents are being sorted in memory.
 
 ## docs
 
