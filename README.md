@@ -10,13 +10,19 @@
 
 MongoDB is a cross-platform document-oriented database program. Classified as a NoSQL database program, MongoDB uses JSON-like documents with optional schemas. javascript is the binary representation of JSON that supports more data types than JSON.
 
-## content
+## Table of contents
 
 - [environment](#environment)
 - [run container](#run-container)
 - [basic usage](#basic-usage)
-- [docs](#docs)
-- [author](#author)
+- [base concepts](#base-concepts)
+- [insert documents](#insert-documents)
+- [find documents](#find-documents)
+- [$in operator](#in-operator)
+- [comparison operators](#comparison-operators)
+- [$elemMatch operator](#elemmatch-operator)
+- [Query arrays with $elemMatch](#query-arrays-with-elemmatch)
+- [logical operators](#logical-operators)
 
 ## environment
 
@@ -42,7 +48,13 @@ MongoDB is a cross-platform document-oriented database program. Classified as a 
 
 - `add access in Atlas to the IP of the machine`
 - `mongosh "mongodb+srv://cluster0.hr48nsg.mongodb.net/myFirstDatabase" --apiVersion 1 --username admin`
-- `mongosh "mongodb+srv://cluster0.hr48nsg.mongodb.net/sample_airbnb" --apiVersion 1 --username admin`
+- `mongosh "mongodb+srv://myatlasclusteredu.6fwnqc5.mongodb.net/sample_airbnb" --apiVersion 1 --username myAtlasDBUser`
+
+### data persistence with volumes
+
+- create `docker-compose.yaml` file
+- `docker-compose up`
+- `docker run -it --rm --volumes-from mongo-mongodb-1 -v $(pwd):/backup mongo bash`
 
 ### basic commands
 
