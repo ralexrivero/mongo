@@ -628,6 +628,139 @@ Delete all the indexes
 db.customers.dropIndexes()
 ```
 
+## Data modeling
+
+Data modeling is the process of creating a data model for the data to be stored in the database. A data model is a logical representation of how data is organized and how it relates to one another. Data models are used to define the structure of the data, the constraints on the data, and the operations that can be performed on the data.
+
+Principles of data modeling
+
+- Data that is accessed together should be stored together
+
+
+### Types of data relationships
+
+- One-to-one
+- One-to-many
+- Many-to-many
+
+### One-to-one
+
+One-to-one relationship is a relationship between two entities where each entity is related to only one entity of the other type. For example, a person can have only one passport, and a passport can belong to only one person.
+
+```javascript
+{
+  _id: ObjectId("5f9e1b9b9c9d3b2b8c8b9c9d"),
+  name: "Ronald",
+  passport: {
+    _id: ObjectId("5f9e1b9b9c9d3b2b8c8b9c9e"),
+    number: "123456789"
+  }
+}
+```
+
+### One-to-many
+
+One-to-many relationship is a relationship between two entities where one entity can be related to many entities of the other type. For example, a person can have many cars, and a car can belong to only one person.
+
+```javascript
+{
+  _id: ObjectId("5f9e1b9b9c9d3b2b8c8b9c9d"),
+  name: "Ronald",
+  cars: [
+    {
+      _id: ObjectId("5f9e1b9b9c9d3b2b8c8b9c9e"),
+      model: "Toyota"
+    },
+    {
+      _id: ObjectId("5f9e1b9b9c9d3b2b8c8b9c9f"),
+      model: "Honda"
+    }
+  ]
+}
+```
+
+### Embedding and Referencing
+
+#### Embedding
+
+Embedding is the process of storing related data in the same document. This is the most common way to model data in MongoDB. The advantage of embedding is that it reduces the number of queries needed to retrieve the data. The disadvantage is that the size of the document can grow large, and the data is not normalized.
+
+#### Referencing
+
+Referencing is the process of storing related data in a separate document. The advantage of referencing is that the data is normalized, and the size of the document is smaller. The disadvantage is that it requires more queries to retrieve the data.
+
+Using references is called linking or data normalization.
+
+
+
+### Many-to-many
+
+Many-to-many relationship is a relationship between two entities where each entity can be related to many entities of the other type. For example, a person can have many cars, and a car can belong to many people.
+
+```javascript
+{
+  _id: ObjectId("5f9e1b9b9c9d3b2b8c8b9c9d"),
+  name: "Ronald",
+  cars: [
+    {
+      _id: ObjectId("5f9e1b9b9c9d3b2b8c8b9c9e"),
+      model: "Toyota"
+    },
+    {
+      _id: ObjectId("5f9e1b9b9c9d3b2b8c8b9c9f"),
+      model: "Honda"
+    }
+  ]
+}
+{
+  _id: ObjectId("5f9e1b9b9c9d3b2b8c8b9ca0"),
+  name: "Maria",
+  cars: [
+    {
+      _id: ObjectId("5f9e1b9b9c9d3b2b8c8b9c9e"),
+      model: "Toyota"
+    },
+    {
+      _id: ObjectId("5f9e1b9b9c9d3b2b8c8b9c9f"),
+      model: "Honda"
+    }
+  ]
+}
+```
+
+### Schema anti-patterns
+
+- massive arrays
+- massive number of collections
+- bloated documents
+- unnecessary indexes
+- queries without indexes
+- data that is accessed togheter, but stored in different collections
+
+## Transactions
+
+Transactions are a set of operations that must be executed as a single unit of work. Transactions are used to ensure that the data is consistent and reliable.
+
+### ACID
+
+- Atomicity: all operations will either succeed or fail together
+- Consistency: all changes made by operations are consistent with database constraints
+- Isolation: multiple transactions can happen at the same time without affecting the outcome of the other transaction
+- Durability: all the changes that are made by operations in a transaction will persist, no matter what happens
+
+#### Multi document ACID transactions
+
+Multi document operations are not inherently atomic in MongoDB.
+A multi-document transaction is a set of read and write operations on one or more documents that are executed as a single unit of work.
+
+#### Multi document transactions in MongoDB
+
+- `.startSession()` - starts a new session
+- `.startTransaction()` - starts a new transaction
+- `.commitTransaction()` commits the transaction
+- `.abortTransaction()` aborts the transaction
+
+
 ## docs
 
 - [MongoDB Manual](https://www.mongodb.com/docs/manual/)
